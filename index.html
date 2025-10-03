@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Meu Gerador de DANFE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Gerador de DANFE</h1>
+  <p>Selecione um arquivo XML de Nota Fiscal para gerar o DANFE em PDF.</p>
+
+  <input type="file" id="xmlFile" accept=".xml">
+  <button onclick="gerarDanfe()">Gerar DANFE</button>
+
+  <div id="output"></div>
+
+  <script>
+    async function gerarDanfe() {
+      const fileInput = document.getElementById("xmlFile");
+      if (!fileInput.files.length) {
+        alert("Selecione um arquivo XML primeiro!");
+        return;
+      }
+
+      const xmlContent = await fileInput.files[0].text();
+
+      try {
+        const response = await fetch("https://ws.meudanfe.com.br/api/v1/get/nfe/xmltodanfepdf/API", {
+          method: "POST",
+          headers: { "Content-Type": "text/plain" },
+          body: xmlContent
+        });
+
+        if (!response.ok) {
+          document.getElementById("output").innerHTML = "❌ Erro ao gerar DANFE.";
+          return;
+        }
+
+        const base64Pdf = (await response.text()).replace(/"/g, "");
+        const pdfUrl = "data:application/pdf;base64," + base64Pdf;
+
+        document.getElementById("output").innerHTML = `
+          ✅ DANFE gerado com sucesso!<br>
+          <a href="${pdfUrl}" download="danfe.pdf" target="_blank">Baixar PDF</a>
+          <br><br>
+          <iframe src="${pdfUrl}" width="100%" height="500px"></iframe>
+        `;
+      } catch (err) {
+        document.getElementById("output").innerHTML = "⚠️ Erro: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html>

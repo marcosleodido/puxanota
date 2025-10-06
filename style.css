@@ -1,33 +1,62 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f5f7fb;
+  color: #333;
   max-width: 800px;
   margin: 40px auto;
   padding: 20px;
-  background: #f9f9f9;
-  color: #333;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background-color: white;
 }
 
 h1 {
-  color: #1a73e8;
   text-align: center;
+  color: #1a73e8;
+}
+
+p {
+  text-align: center;
+  color: #555;
+}
+
+.card {
+  background: #f9fafc;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 8px 0;
+  font-size: 14px;
 }
 
 button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  background: #1a73e8;
-  color: white;
+  padding: 10px 18px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  color: #fff;
   cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
 }
 
 button:hover {
-  background: #1558b0;
+  opacity: 0.9;
 }
 
+.green { background-color: #28a745; }
+.orange { background-color: #ff9800; }
+button:not(.green):not(.orange) { background-color: #1a73e8; }
+
 #output {
-  margin-top: 20px;
+  margin-top: 25px;
+  text-align: center;
 }

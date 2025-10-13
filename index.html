@@ -1,113 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Gerador de DANFE</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultor de Nota Fiscal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Gerador de DANFE</h1>
-  <p>Informe a <strong>chave de acesso</strong> ou selecione um arquivo XML para gerar o DANFE em PDF.</p>
 
-  <div class="card">
-    <input type="text" id="chaveAcesso" placeholder="Digite a chave de acesso da NF-e">
-    <div class="buttons">
-      <button class="green" onclick="buscarPorChave()">Buscar DANFE (Chave)</button>
-      <button class="orange" onclick="baixarXML()">Baixar XML</button>
-    </div>
-  </div>
+    <main class="container">
+        <header>
+            <h1>Consultor de NF-e</h1>
+            <p>Digite a chave de acesso de 44 dígitos da Nota Fiscal Eletrônica.</p>
+        </header>
 
-  <hr>
+        <section class="form-container">
+            <input type="text" id="chaveNfe" placeholder="Cole a chave de acesso aqui" maxlength="44" inputmode="numeric">
+            <button id="btnConsultar">
+                <span class="btn-text">Consultar</span>
+                <span class="loader hidden"></span>
+            </button>
+        </section>
 
-  <div class="card">
-    <input type="file" id="xmlFile" accept=".xml">
-    <button onclick="gerarDanfe()">Gerar DANFE (Arquivo XML)</button>
-  </div>
+        <section id="resultado" class="resultado-container">
+            <p class="placeholder">Aguardando a chave de acesso...</p>
+        </section>
+    </main>
 
-  <div id="output"></div>
+    <footer>
+        <p>Desenvolvido por <a href="https://github.com/SEU-USUARIO" target="_blank">Seu Nome</a></p>
+    </footer>
 
-  <script>
-    async function gerarDanfe() {
-      const fileInput = document.getElementById("xmlFile");
-      if (!fileInput.files.length) {
-        alert("Selecione um arquivo XML primeiro!");
-        return;
-      }
-
-      const xmlContent = await fileInput.files[0].text();
-
-      try {
-        const response = await fetch("https://ws.meudanfe.com.br/api/v1/get/nfe/xmltodanfepdf/API", {
-          method: "POST",
-          headers: { "Content-Type": "text/plain" },
-          body: xmlContent
-        });
-
-        if (!response.ok) throw new Error("Erro ao gerar DANFE");
-
-        const base64Pdf = (await response.text()).replace(/"/g, "");
-        const pdfUrl = "data:application/pdf;base64," + base64Pdf;
-
-        document.getElementById("output").innerHTML = `
-          ✅ DANFE gerado com sucesso!<br>
-          <a href="${pdfUrl}" download="danfe.pdf" target="_blank">Baixar PDF</a>
-          <br><br>
-          <iframe src="${pdfUrl}" width="100%" height="500px"></iframe>
-        `;
-      } catch (err) {
-        document.getElementById("output").innerHTML = "⚠️ Erro: " + err.message;
-      }
-    }
-
-    async function buscarPorChave() {
-      const chave = document.getElementById("chaveAcesso").value.trim();
-      if (!chave) {
-        alert("Digite a chave de acesso primeiro!");
-        return;
-      }
-
-      try {
-        const response = await fetch(`https://ws.meudanfe.com.br/api/v1/get/nfe/chave/${chave}/danfepdf/API`);
-        if (!response.ok) throw new Error("Erro ao buscar DANFE pela chave.");
-
-        const base64Pdf = (await response.text()).replace(/"/g, "");
-        const pdfUrl = "data:application/pdf;base64," + base64Pdf;
-
-        document.getElementById("output").innerHTML = `
-          ✅ DANFE encontrado!<br>
-          <a href="${pdfUrl}" download="danfe_${chave}.pdf" target="_blank">Baixar PDF</a>
-          <br><br>
-          <iframe src="${pdfUrl}" width="100%" height="500px"></iframe>
-        `;
-      } catch (err) {
-        document.getElementById("output").innerHTML = "⚠️ Erro: " + err.message;
-      }
-    }
-
-    async function baixarXML() {
-      const chave = document.getElementById("chaveAcesso").value.trim();
-      if (!chave) {
-        alert("Digite a chave de acesso!");
-        return;
-      }
-
-      try {
-        const response = await fetch(`https://ws.meudanfe.com.br/api/v1/get/nfe/chave/${chave}/xml/API`);
-        if (!response.ok) throw new Error("Erro ao baixar XML.");
-
-        const xmlContent = await response.text();
-        const blob = new Blob([xmlContent], { type: "application/xml" });
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `nota_${chave}.xml`;
-        a.click();
-        URL.revokeObjectURL(url);
-      } catch (err) {
-        alert("⚠️ Erro: " + err.message);
-      }
-    }
-  </script>
+    <script src="script.js" defer></script>
 </body>
 </html>

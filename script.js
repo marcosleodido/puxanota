@@ -1,48 +1,55 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const chaveNfeInput = document.getElementById('chaveNfe');
-    const consultarBtn = document.getElementById('consultarBtn');
-    const resultadoDiv = document.getElementById('resultado');
+const gerarBtn = document.getElementById('gerarBtn');
+const xmlInput = document.getElementById('xmlInput');
+const statusText = document.getElementById('status');
 
-    consultarBtn.addEventListener('click', () => {
-        const chave = chaveNfeInput.value.trim();
+gerarBtn.addEventListener('click', async () => {
+    const xmlContent = xmlInput.value.trim();
 
-        if (chave.length !== 44 || !/^\d+$/.test(chave)) {
-            resultadoDiv.innerHTML = `<p style="color: red;">Por favor, insira uma chave de NF-e válida com 44 dígitos numéricos.</p>`;
-            return;
-        }
+    if (!xmlContent) {
+        statusText.textContent = "⚠️ Cole o conteúdo do XML antes de gerar!";
+        return;
+    }
 
-        consultarDanfe(chave);
-    });
+    statusText.textContent = "⏳ Gerando DANFE, aguarde...";
 
-    async function consultarDanfe(chave) {
-        resultadoDiv.innerHTML = `<p>Consultando, por favor aguarde...</p>`;
-        
-        // URL da API que você forneceu
-        const apiUrl = 'https://consultadanfe.com/CDanfe/api_generate';
+    const apiUrl = 'https://consultadanfe.com/CDanfe/api_generate';
+    const formData = new URLSearchParams();
+    formData.append('codigo_xml', xmlContent);
 
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                // A API provavelmente espera um JSON, então enviamos nesse formato
-                body: JSON.stringify({ chNFe: chave }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': 'application/json'
+            },
+            body: formData
+        });
 
-            if (!response.ok) {
-                throw new Error(`Erro na API: ${response.statusText}`);
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            const byteCharacters = atob(data.pdf.base64);
+            const byteNumbers = new Array(byteCharacters.length);
+
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
             }
 
-            // Tentamos interpretar a resposta como JSON.
-            const data = await response.json();
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], { type: 'application/pdf' });
 
-            // Mostramos a resposta completa para depuração
-            resultadoDiv.innerHTML = `<h3>Resposta da API:</h3><pre>${JSON.stringify(data, null, 2)}</pre>`;
-            
-        } catch (error) {
-            console.error('Falha na consulta:', error);
-            resultadoDiv.innerHTML = `<p style="color: red;">Não foi possível consultar a nota. Verifique a chave ou tente novamente mais tarde.</p>`;
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = data.pdf.filename || "danfe.pdf";
+            a.click();
+
+            statusText.textContent = "✅ DANFE gerado com sucesso!";
+        } else {
+            statusText.textContent = "❌ Erro ao gerar DANFE: " + (data.message || "Verifique o XML.");
         }
+    } catch (error) {
+        statusText.textContent = "❌ Ocorreu um erro: " + error.message;
     }
 });

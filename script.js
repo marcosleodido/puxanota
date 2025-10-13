@@ -12,7 +12,9 @@ gerarBtn.addEventListener('click', async () => {
 
     statusText.textContent = "⏳ Gerando DANFE, aguarde...";
 
-    const apiUrl = 'https://consultadanfe.com/CDanfe/api_generate';
+    // 🔥 URL atualizada com o proxy CORS Anywhere
+    const apiUrl = 'https://cors-anywhere.herokuapp.com/https://consultadanfe.com/CDanfe/api_generate';
+
     const formData = new URLSearchParams();
     formData.append('codigo_xml', xmlContent);
 

@@ -3,39 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultor de Nota Fiscal</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <title>Gerar DANFE Online</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Gerar DANFE pela Chave ou XML</h1>
+        <textarea id="xmlInput" placeholder="Cole aqui o conteúdo completo do XML da nota fiscal..."></textarea>
+        <button id="gerarBtn">Gerar DANFE</button>
+        <p id="status"></p>
+    </div>
 
-    <main class="container">
-        <header>
-            <h1>Consultor de NF-e</h1>
-            <p>Digite a chave de acesso de 44 dígitos da Nota Fiscal Eletrônica.</p>
-        </header>
-
-        <section class="form-container">
-            <input type="text" id="chaveNfe" placeholder="Cole a chave de acesso aqui" maxlength="44" inputmode="numeric">
-            <button id="btnConsultar">
-                <span class="btn-text">Consultar</span>
-                <span class="loader hidden"></span>
-            </button>
-        </section>
-
-        <section id="resultado" class="resultado-container">
-            <p class="placeholder">Aguardando a chave de acesso...</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>Desenvolvido por <a href="https://github.com/SEU-USUARIO" target="_blank">Seu Nome</a></p>
-    </footer>
-
-    <script src="script.js" defer></script>
-</body>
-</html>
+    <script src="script.js"></script>
+</body

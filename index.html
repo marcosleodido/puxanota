@@ -66,7 +66,7 @@
           </div>
 
           <!-- Resultado -->
-          <div id="resultado" class="mt-8 text-center text-xl font-bold min-h-[3rem] flex items-center justify-center p-4 rounded-lg bg-slate-900">
+          <div id="resultado" class="mt-8 text-center text-xl font-bold min-h-[6rem] flex flex-col items-center justify-center p-4 rounded-lg bg-slate-900">
             <!-- O resultado aparecerá aqui -->
           </div>
         </div>
@@ -147,6 +147,9 @@
   </div>
 
   <script>
+    // Variável para guardar o valor formatado, para a função de copiar
+    let valorFormatadoParaCopiar = '';
+
     function calcularMultiplo() {
       const entrada = parseFloat(document.getElementById("entradaEstoque").value);
       const quantidade = parseFloat(document.getElementById("quantidadeNota").value);
@@ -170,13 +173,63 @@
       const multiplo = entrada / quantidade;
       
       // Formata para 12 casas decimais e troca ponto por vírgula
-      const resultadoFormatado = multiplo.toFixed(12).replace('.', ',');
+      valorFormatadoParaCopiar = multiplo.toFixed(12).replace('.', ',');
 
-      resultadoDiv.innerHTML = `Multiplicador: <br> <span class="font-mono text-2xl">${resultadoFormatado}</span>`;
+      resultadoDiv.innerHTML = `
+        <div>
+          Multiplicador: <br> <span class="font-mono text-2xl">${valorFormatadoParaCopiar}</span>
+        </div>
+        <button onclick="copiarResultado()" id="botaoCopiar" class="mt-4 w-auto bg-slate-600 text-slate-200 text-sm font-medium py-2 px-4 rounded-lg hover:bg-slate-700 transition-colors duration-300">
+          Copiar Valor
+        </button>
+      `;
       resultadoDiv.classList.add("text-green-400");
+    }
+
+    function copiarResultado() {
+      if (!valorFormatadoParaCopiar) return;
+
+      // 1. Criar um elemento textarea temporário
+      const textarea = document.createElement('textarea');
+      textarea.value = valorFormatadoParaCopiar;
+      
+      // 2. Esconder o textarea
+      textarea.style.position = 'absolute';
+      textarea.style.left = '-9999px';
+      
+      // 3. Adicionar ao DOM
+      document.body.appendChild(textarea);
+      
+      // 4. Selecionar e copiar
+      textarea.select();
+      
+      try {
+        // Usar execCommand para maior compatibilidade (especialmente em iframes)
+        document.execCommand('copy');
+        
+        // 5. Dar feedback ao usuário
+        const botaoCopiar = document.getElementById('botaoCopiar');
+        if (botaoCopiar) {
+          botaoCopiar.innerText = '✅ Copiado!';
+          botaoCopiar.disabled = true;
+          // Voltar ao normal depois de 2 segundos
+          setTimeout(() => {
+            botaoCopiar.innerText = 'Copiar Valor';
+            botaoCopiar.disabled = false;
+          }, 2000);
+        }
+      } catch (err) {
+        console.error('Falha ao copiar o texto:', err);
+        const botaoCopiar = document.getElementById('botaoCopiar');
+        if (botaoCopiar) {
+          botaoCopiar.innerText = 'Erro ao copiar';
+        }
+      }
+      
+      // 6. Remover o textarea do DOM
+      document.body.removeChild(textarea);
     }
   </script>
 
 </body>
 </html>
-

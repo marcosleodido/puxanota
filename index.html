@@ -18,198 +18,204 @@
     }
   </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
     body {
       font-family: 'Inter', sans-serif;
     }
   </style>
 </head>
-<body class="bg-white text-slate-800 min-h-screen p-6 md:p-12 antialiased">
+<body class="bg-white text-slate-800 min-h-screen p-4 sm:p-8 lg:p-12 flex flex-col justify-center antialiased">
 
-  <div class="container mx-auto max-w-7xl">
+  <div class="container mx-auto max-w-[1600px] w-full">
     
-    <!-- Cabeçalho da Página (Opcional, dá um toque profissional) -->
-    <header class="mb-10 text-center max-w-2xl mx-auto">
-      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-50 text-cyan-700 text-xs font-semibold uppercase tracking-wider mb-3 border border-cyan-200">
+    <!-- Cabeçalho da Página -->
+    <header class="mb-10 lg:mb-14 text-center max-w-4xl mx-auto">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-50 text-cyan-700 text-sm font-bold uppercase tracking-wider mb-4 border border-cyan-200 shadow-sm">
         Ferramenta de Estoque & ADM
       </span>
-      <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
         Conversor de Multiplicador
       </h1>
-      <p class="text-slate-500 mt-2 text-sm md:text-base">
-        Calcule instantaneamente o fator de conversão de nota fiscal para estoque com precisão de 12 casas decimais.
+      <p class="text-slate-600 mt-4 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
+        Calcule instantaneamente o fator de conversão de nota fiscal para estoque com precisão exata de 12 casas decimais.
       </p>
     </header>
 
-    <div class="flex flex-col lg:flex-row gap-8 items-start">
+    <!-- Grid de Conteúdo -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
 
       <!-- Coluna 1: Calculadora -->
-      <div class="lg:w-1/2 xl:w-5/12 w-full">
-        <div class="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-white shadow-2xl shadow-slate-900/20 rounded-3xl p-7 md:p-9 border border-slate-800 relative overflow-hidden">
+      <div class="lg:col-span-5 w-full flex flex-col">
+        <div class="bg-slate-900 text-white shadow-2xl rounded-3xl p-8 sm:p-10 lg:p-12 border border-slate-800 relative overflow-hidden flex-1 flex flex-col justify-between">
           
           <!-- Detalhe decorativo no topo do card -->
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500"></div>
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500"></div>
 
-          <div class="flex items-center gap-3 mb-8">
-            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <div>
-              <h2 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-300">
-                Calculadora
-              </h2>
-              <p class="text-xs text-slate-400">Preencha as quantidades para gerar o multiplicador</p>
-            </div>
-          </div>
-
-          <!-- Formulário -->
-          <div class="space-y-5">
-            <div>
-              <label for="entradaEstoque" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                Quantidade que vai entrar no estoque
-              </label>
-              <div class="flex gap-3">
-                <input type="number" id="entradaEstoque" placeholder="Ex: 50" class="flex-1 p-3.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all shadow-inner text-sm">
-                <input type="text" id="unidadeEntrada" placeholder="Unidade (ex: cx)" class="w-1/3 p-3.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all shadow-inner text-sm">
+          <div>
+            <div class="flex items-center gap-4 mb-8">
+              <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-300">
+                  Calculadora
+                </h2>
+                <p class="text-sm text-slate-400 mt-1">Preencha as quantidades para gerar o multiplicador</p>
               </div>
             </div>
 
-            <div>
-              <label for="quantidadeNota" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                Quantidade na Nota Fiscal
-              </label>
-              <div class="flex gap-3">
-                <input type="number" id="quantidadeNota" placeholder="Ex: 10" class="flex-1 p-3.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all shadow-inner text-sm">
-                <input type="text" id="unidadeNota" placeholder="Unidade (ex: kg)" class="w-1/3 p-3.5 bg-slate-800/80 border border-slate-700/80 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all shadow-inner text-sm">
+            <!-- Formulário -->
+            <div class="space-y-6">
+              <div>
+                <label for="entradaEstoque" class="block text-sm sm:text-base font-bold text-slate-200 uppercase tracking-wider mb-2.5">
+                  Quantidade que vai entrar no estoque
+                </label>
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <input type="number" id="entradaEstoque" placeholder="Ex: 50" class="flex-1 p-4 sm:p-5 bg-slate-950/90 border border-slate-700/80 rounded-2xl text-white text-lg placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all shadow-inner">
+                  <input type="text" id="unidadeEntrada" placeholder="Unidade (ex: cx)" class="sm:w-2/5 p-4 sm:p-5 bg-slate-950/90 border border-slate-700/80 rounded-2xl text-white text-lg placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all shadow-inner">
+                </div>
               </div>
-            </div>
 
-            <button onclick="calcularMultiplo()" class="w-full mt-2 bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-cyan-500/20 transition-all duration-300 transform active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-cyan-400">
-              Calcular Multiplicador
-            </button>
+              <div>
+                <label for="quantidadeNota" class="block text-sm sm:text-base font-bold text-slate-200 uppercase tracking-wider mb-2.5">
+                  Quantidade na Nota Fiscal
+                </label>
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <input type="number" id="quantidadeNota" placeholder="Ex: 10" class="flex-1 p-4 sm:p-5 bg-slate-950/90 border border-slate-700/80 rounded-2xl text-white text-lg placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all shadow-inner">
+                  <input type="text" id="unidadeNota" placeholder="Unidade (ex: kg)" class="sm:w-2/5 p-4 sm:p-5 bg-slate-950/90 border border-slate-700/80 rounded-2xl text-white text-lg placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all shadow-inner">
+                </div>
+              </div>
+
+              <button onclick="calcularMultiplo()" class="w-full mt-4 bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-extrabold text-lg sm:text-xl py-4 sm:py-5 px-6 rounded-2xl shadow-lg shadow-cyan-500/20 transition-all duration-300 transform active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-cyan-400 cursor-pointer">
+                Calcular Multiplicador
+              </button>
+            </div>
           </div>
 
           <!-- Área de Resultado -->
-          <div id="resultado" class="mt-8 text-center min-h-[6.5rem] flex flex-col items-center justify-center p-5 rounded-2xl bg-slate-950/80 border border-slate-800 transition-all duration-300">
-            <span class="text-slate-500 text-sm font-medium">Os resultados calculados aparecerão aqui.</span>
+          <div id="resultado" class="mt-8 text-center min-h-[8rem] flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-950/90 border border-slate-800 transition-all duration-300 shadow-inner">
+            <span class="text-slate-400 text-base font-medium">Os resultados calculados aparecerão aqui.</span>
           </div>
 
         </div>
       </div>
 
       <!-- Coluna 2: Dicas e Exemplos -->
-      <div class="lg:w-1/2 xl:w-7/12 w-full">
-        <div class="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-white shadow-2xl shadow-slate-900/20 rounded-3xl p-7 md:p-9 border border-slate-800 relative overflow-hidden">
+      <div class="lg:col-span-7 w-full flex flex-col">
+        <div class="bg-slate-900 text-white shadow-2xl rounded-3xl p-8 sm:p-10 lg:p-12 border border-slate-800 relative overflow-hidden flex-1 flex flex-col justify-between">
           
           <!-- Detalhe decorativo no topo do card -->
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
 
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            </div>
-            <div>
-              <h2 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300">
-                Guia Prático & Exemplos
-              </h2>
-              <p class="text-xs text-slate-400">Entenda a fórmula e veja casos reais de aplicação</p>
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            
-            <!-- Card Fórmula -->
-            <div class="bg-gradient-to-r from-slate-800/90 to-slate-800/50 rounded-2xl p-5 border border-cyan-500/20 shadow-md">
-              <div class="flex items-center justify-between mb-2">
-                <h3 class="font-bold text-sm text-cyan-300 flex items-center gap-2">
-                  <span>💡</span> A Fórmula Mágica
-                </h3>
-                <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">Regra</span>
-              </div>
-              <p class="text-xs text-slate-300 mb-3">
-                O multiplicador converte a unidade da nota fiscal diretamente para a unidade configurada no seu estoque.
-              </p>
-              <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 text-center font-mono text-sm text-cyan-300 tracking-wide font-semibold shadow-inner">
-                (Quantidade que ENTRA) ÷ (Quantidade da NOTA)
-              </div>
-            </div>
-
-            <!-- Grid de Cenários -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-              
-              <!-- Cenário 1 -->
-              <div class="bg-slate-800/50 hover:bg-slate-800/80 transition-colors rounded-2xl p-4 border border-slate-700/60 flex flex-col justify-between">
-                <div>
-                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/20 mb-2">
-                    Cenário 1
-                  </span>
-                  <h4 class="font-semibold text-xs text-white mb-2">Peso vs. Unidade</h4>
-                  <p class="text-xs text-slate-300 leading-relaxed">
-                    <strong class="text-slate-400">NF:</strong> 100 kg <br>
-                    <strong class="text-slate-400">Estoque:</strong> 20 barras
-                  </p>
-                </div>
-                <div class="mt-3 pt-2 border-t border-slate-700/50 text-xs font-mono text-amber-300 font-bold">
-                  = 0,200000000000
-                </div>
-              </div>
-
-              <!-- Cenário 2 -->
-              <div class="bg-slate-800/50 hover:bg-slate-800/80 transition-colors rounded-2xl p-4 border border-slate-700/60 flex flex-col justify-between">
-                <div>
-                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 mb-2">
-                    Cenário 2
-                  </span>
-                  <h4 class="font-semibold text-xs text-white mb-2">Metros vs. Caixa</h4>
-                  <p class="text-xs text-slate-300 leading-relaxed">
-                    <strong class="text-slate-400">NF:</strong> 305 metros <br>
-                    <strong class="text-slate-400">Estoque:</strong> 1 caixa
-                  </p>
-                </div>
-                <div class="mt-3 pt-2 border-t border-slate-700/50 text-xs font-mono text-emerald-300 font-bold">
-                  = 0,003278688525
-                </div>
-              </div>
-
-              <!-- Cenário 3 -->
-              <div class="bg-slate-800/50 hover:bg-slate-800/80 transition-colors rounded-2xl p-4 border border-slate-700/60 flex flex-col justify-between">
-                <div>
-                  <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/20 mb-2">
-                    Cenário 3
-                  </span>
-                  <h4 class="font-semibold text-xs text-white mb-2">Granel vs. Volume</h4>
-                  <p class="text-xs text-slate-300 leading-relaxed">
-                    <strong class="text-slate-400">NF:</strong> 900 kg <br>
-                    <strong class="text-slate-400">Estoque:</strong> 2 m³
-                  </p>
-                </div>
-                <div class="mt-3 pt-2 border-t border-slate-700/50 text-xs font-mono text-sky-300 font-bold">
-                  = 0,002222222222
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Card Alerta de Precisão -->
-            <div class="bg-gradient-to-r from-blue-950/40 to-slate-900 rounded-2xl p-4 border border-blue-500/30 flex gap-3.5 items-start">
-              <div class="p-2 rounded-lg bg-blue-500/10 text-blue-400 shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          <div>
+            <div class="flex items-center gap-4 mb-8">
+              <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>
               <div>
-                <h4 class="font-bold text-xs text-blue-300 mb-1">Atenção aos 12 Dígitos Decimais</h4>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  Sistemas ERP/ADM exigem a precisão exata de <strong>12 casas após a vírgula</strong> para eliminar discrepâncias no fechamento de inventário e custos unitários.
-                </p>
+                <h2 class="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300">
+                  Guia Prático & Exemplos
+                </h2>
+                <p class="text-sm text-slate-400 mt-1">Entenda a fórmula e veja casos reais de aplicação</p>
               </div>
             </div>
 
+            <div class="space-y-6">
+              
+              <!-- Card Fórmula -->
+              <div class="bg-slate-800/80 rounded-2xl p-6 border border-cyan-500/30 shadow-md">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="font-bold text-base sm:text-lg text-cyan-300 flex items-center gap-2">
+                    <span class="text-xl">💡</span> A Fórmula Mágica
+                  </h3>
+                  <span class="text-xs uppercase font-bold tracking-wider px-3 py-1 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">Regra</span>
+                </div>
+                <p class="text-sm sm:text-base text-slate-300 mb-4 leading-relaxed">
+                  O multiplicador converte a unidade da nota fiscal diretamente para a unidade configurada no seu estoque.
+                </p>
+                <div class="bg-slate-950 p-4 sm:p-5 rounded-xl border border-slate-800 text-center font-mono text-base sm:text-lg text-cyan-300 tracking-wide font-bold shadow-inner">
+                  (Quantidade que ENTRA) ÷ (Quantidade da NOTA)
+                </div>
+              </div>
+
+              <!-- Grid de Cenários -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                
+                <!-- Cenário 1 -->
+                <div class="bg-slate-800/40 hover:bg-slate-800/70 transition-colors rounded-2xl p-5 border border-slate-700/60 flex flex-col justify-between">
+                  <div>
+                    <span class="inline-block px-2.5 py-1 rounded text-xs font-bold bg-amber-500/10 text-amber-300 border border-amber-500/20 mb-3">
+                      Cenário 1
+                    </span>
+                    <h4 class="font-bold text-sm sm:text-base text-white mb-2">Peso vs. Unidade</h4>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      <strong class="text-slate-400">NF:</strong> 100 kg <br>
+                      <strong class="text-slate-400">Estoque:</strong> 20 barras
+                    </p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-slate-700/50 text-xs sm:text-sm font-mono text-amber-300 font-bold break-all">
+                    = 0,200000000000
+                  </div>
+                </div>
+
+                <!-- Cenário 2 -->
+                <div class="bg-slate-800/40 hover:bg-slate-800/70 transition-colors rounded-2xl p-5 border border-slate-700/60 flex flex-col justify-between">
+                  <div>
+                    <span class="inline-block px-2.5 py-1 rounded text-xs font-bold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 mb-3">
+                      Cenário 2
+                    </span>
+                    <h4 class="font-bold text-sm sm:text-base text-white mb-2">Metros vs. Caixa</h4>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      <strong class="text-slate-400">NF:</strong> 305 metros <br>
+                      <strong class="text-slate-400">Estoque:</strong> 1 caixa
+                    </p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-slate-700/50 text-xs sm:text-sm font-mono text-emerald-300 font-bold break-all">
+                    = 0,003278688525
+                  </div>
+                </div>
+
+                <!-- Cenário 3 -->
+                <div class="bg-slate-800/40 hover:bg-slate-800/70 transition-colors rounded-2xl p-5 border border-slate-700/60 flex flex-col justify-between">
+                  <div>
+                    <span class="inline-block px-2.5 py-1 rounded text-xs font-bold bg-sky-500/10 text-sky-300 border border-sky-500/20 mb-3">
+                      Cenário 3
+                    </span>
+                    <h4 class="font-bold text-sm sm:text-base text-white mb-2">Granel vs. Volume</h4>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      <strong class="text-slate-400">NF:</strong> 900 kg <br>
+                      <strong class="text-slate-400">Estoque:</strong> 2 m³
+                    </p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-slate-700/50 text-xs sm:text-sm font-mono text-sky-300 font-bold break-all">
+                    = 0,002222222222
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
           </div>
+
+          <!-- Card Alerta de Precisão -->
+          <div class="mt-6 bg-blue-950/30 rounded-2xl p-5 border border-blue-500/30 flex gap-4 items-start">
+            <div class="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm sm:text-base text-blue-300 mb-1">Atenção aos 12 Dígitos Decimais</h4>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Sistemas ERP/ADM exigem a precisão exata de <strong>12 casas após a vírgula</strong> para eliminar discrepâncias no fechamento de inventário e custos unitários.
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -226,7 +232,7 @@
 
       if (isNaN(entrada) || isNaN(quantidade)) {
         resultadoDiv.innerHTML = `
-          <div class="text-red-400 font-medium text-sm flex items-center gap-2">
+          <div class="text-red-400 font-semibold text-base flex items-center gap-2">
             <span>⚠️</span> Preencha ambos os campos numéricos.
           </div>`;
         return;
@@ -234,7 +240,7 @@
       
       if (quantidade === 0) {
         resultadoDiv.innerHTML = `
-          <div class="text-red-400 font-medium text-sm flex items-center gap-2">
+          <div class="text-red-400 font-semibold text-base flex items-center gap-2">
             <span>⚠️</span> A quantidade da nota não pode ser zero.
           </div>`;
         return;
@@ -244,14 +250,14 @@
       valorFormatadoParaCopiar = multiplo.toFixed(12).replace('.', ',');
 
       resultadoDiv.innerHTML = `
-        <div class="animate-fade-in">
-          <span class="text-xs uppercase font-semibold text-slate-400 tracking-wider block mb-1">Multiplicador Calculado</span>
-          <div class="font-mono text-xl md:text-2xl font-bold text-emerald-400 tracking-wider">
+        <div class="w-full">
+          <span class="text-xs sm:text-sm uppercase font-bold text-slate-400 tracking-wider block mb-2">Multiplicador Calculado</span>
+          <div class="font-mono text-2xl sm:text-3xl lg:text-4xl font-extrabold text-emerald-400 tracking-wider break-all">
             ${valorFormatadoParaCopiar}
           </div>
-          <button onclick="copiarResultado()" id="botaoCopiar" class="mt-3 inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2 px-4 rounded-full border border-slate-700 shadow transition-all duration-200 active:scale-95">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          <button onclick="copiarResultado()" id="botaoCopiar" class="mt-4 inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-bold py-2.5 px-6 rounded-full border border-slate-700 shadow transition-all duration-200 active:scale-95 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
             </svg>
             Copiar Resultado
           </button>
@@ -274,7 +280,7 @@
         const botaoCopiar = document.getElementById('botaoCopiar');
         if (botaoCopiar) {
           botaoCopiar.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
             <span class="text-emerald-400">Copiado com sucesso!</span>
@@ -282,8 +288,8 @@
           botaoCopiar.disabled = true;
           setTimeout(() => {
             botaoCopiar.innerHTML = `
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
               </svg>
               Copiar Resultado
             `;
